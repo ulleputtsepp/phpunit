@@ -33,5 +33,19 @@ class ReceiptTest extends TestCase {
             'When summing the total should equal 15'
         );
     }
+    //tax calculation test method
+    public function testTax() {
+        $inputAmount = 10.00;
+        //tax percentage input
+        $taxInput = 0.10;
+        //call tax method on the Receipt object, returning output
+        $output = $this->Receipt->tax($inputAmount, $taxInput);
+        $this->assertEquals(
+            1.00,
+            $output,
+            //in case of failure, a message
+            'The tax calculaiton should equal 1.00'
+        );
+    }
 }
 

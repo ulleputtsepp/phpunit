@@ -10,4 +10,8 @@ class Receipt {
     public function total(array $items = []) {
         return array_sum($items);
     }
+    //add a tax calculation method with two inputs
+    public function tax($amount, $tax){
+        return ($amount * $tax);
+    }
 }

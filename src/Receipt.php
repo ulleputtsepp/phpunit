@@ -7,8 +7,14 @@
  */
 namespace TDD;
 class Receipt {
-    public function total(array $items = []) {
-        return array_sum($items);
+    //add a coupon-parameter
+    public function total(array $items = [], $coupon) {
+        $sum = array_sum($items);
+        //use the coupon value on the total
+        if (!is_null($coupon)) {
+            return $sum - ($sum * $coupon);
+        }
+        return $sum;
     }
     //add a tax calculation method with two inputs
     public function tax($amount, $tax){

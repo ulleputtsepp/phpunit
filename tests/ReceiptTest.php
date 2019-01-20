@@ -24,7 +24,9 @@ class ReceiptTest extends TestCase {
     //refactor testTotal
     public function testTotal() {
         $input = [0,2,5,8];
-        $output = $this->Receipt->total($input);
+        //add a second input, a coupon
+        $coupon = null; //null value will be our dummy object
+        $output = $this->Receipt->total($input, $coupon);
         //võrdleb
         $this->assertEquals(
             //oodatav väärtus
@@ -33,6 +35,19 @@ class ReceiptTest extends TestCase {
             'When summing the total should equal 15'
         );
     }
+
+    //modify the method
+    public function testTotalAndCoupon() {
+        $input = [0,2,5,8];
+        $coupon = 0.20; //real value, 20% off of total
+        $output = $this->Receipt->total($input, $coupon);
+        $this->assertEquals(
+            12,
+            $output,
+            'When summing the total should equal 12'
+        );
+    }
+
     //tax calculation test method
     public function testTax() {
         $inputAmount = 10.00;
@@ -48,4 +63,3 @@ class ReceiptTest extends TestCase {
         );
     }
 }
-

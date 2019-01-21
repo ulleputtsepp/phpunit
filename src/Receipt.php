@@ -20,4 +20,9 @@ class Receipt {
     public function tax($amount, $tax){
         return ($amount * $tax);
     }
+    //add a method to calculate the final total of our receipt (total for a collection of items, the tax total, and then sum those two values together)
+    public function postTaxTotal($items, $tax, $coupon) {
+        $subtotal = $this->total($items, $coupon);
+        return $subtotal + $this->tax($subtotal, $tax);
+    }
 }

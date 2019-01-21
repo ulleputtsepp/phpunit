@@ -21,21 +21,31 @@ class ReceiptTest extends TestCase {
     public function tearDown() {
         unset($this->Receipt);
     }
-    //refactor testTotal
-    public function testTotal() {
-        $input = [0,2,5,8];
-        //add a second input, a coupon
+
+    //add a dot block and annotation - define data provider
+    /**
+     * @dataProvider provideTotal
+     */
+
+    //add a data provider to the test total method
+    public function testTotal($items, $expected) {
         $coupon = null; //null value will be our dummy object
-        $output = $this->Receipt->total($input, $coupon);
-        //võrdleb
-        $this->assertEquals(
-            //oodatav väärtus
-            15,
+        $output = $this->Receipt->total($items, $coupon);
+            $this->assertEquals(
+            $expected,
             $output,
-            'When summing the total should equal 15'
+            "When summing the total should equal {$expected}"
         );
     }
 
+    //add provider function, notice! the name of the data provider; our data provider returns an array
+    public function provideTotal() {
+        return [
+            [[1,2,5,8], 16],
+            [[-1,2,5,8], 14],
+            [[1,2,8], 11],
+        ];
+    }
     //modify the method
     public function testTotalAndCoupon() {
         $input = [0,2,5,8];

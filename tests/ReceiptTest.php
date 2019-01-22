@@ -58,6 +58,14 @@ class ReceiptTest extends TestCase {
             'When summing the total should equal 12'
         );
     }
+    //build an exception test for the total method
+    public function testTotalException() {
+        $input = [0,2,5,8];
+        $coupon = 1.20; //increase coupon value >100%
+        //string correspond to the class name of the exception
+        $this->expectException('BadMethodCallException');
+        $this->Receipt->total($input, $coupon);
+    }
 
     //method for building a mock instance of the Receipt class
     public function testPostTaxTotal() {

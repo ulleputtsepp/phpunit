@@ -41,7 +41,8 @@ class ReceiptTest extends TestCase {
     //add provider function, notice! the name of the data provider; our data provider returns an array
     public function provideTotal() {
         return [
-            [[1,2,5,8], 16],
+            //filter the test by including a string key value for the index on the array
+            'ints totaling 16' => [[1,2,5,8], 16],
             [[-1,2,5,8], 14],
             [[1,2,8], 11],
         ];
